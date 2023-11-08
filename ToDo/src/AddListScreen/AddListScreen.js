@@ -3,34 +3,33 @@ import { Button, Text, View, TextInput } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import metadata from '../storage.metadata.json';
 
-const AddListScreen = () => {
+const AddListScreen = ({ navigation }) => {
     const [newItem, setNewItem] = useState("");
 
     const addItemToList = async () => {
         if (newItem.trim() !== "") {
-            // Adicione o novo item à lista
-            const savedItemList = await AsyncStorage.getItem(metadata.LIST.ITEMS);
+            const savedItemList = await AsyncStorage.getItem(metadata.LIST.TASK);
             let itemList = [];
             if (savedItemList) {
                 itemList = JSON.parse(savedItemList);
             }
             itemList.push(newItem);
-            await AsyncStorage.setItem(metadata.LIST.ITEMS, JSON.stringify(itemList));
+            await AsyncStorage.setItem(metadata.LIST.TASK, JSON.stringify(itemList));
 
-            // Redirecione de volta para a tela HomeScreen
             navigation.navigate("HomeScreen");
         }
     }
 
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>Add an item to the list</Text>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: "#fff8f0" }}>
+            <Text style={{ marginBottom: 15, fontSize: 20 }}>Adicione um item para sua lista:</Text>
             <TextInput
+                style={{ marginBottom: 10, borderBottomWidth: 1, borderBottomColor: 'gray' }}
                 placeholder="New Item"
                 value={newItem}
                 onChangeText={setNewItem}
             />
-            <Button title="Add Item" onPress={addItemToList} />
+            <Button color="#4c956c" title="Adicionar" onPress={addItemToList} />
         </View>
     );
 }
