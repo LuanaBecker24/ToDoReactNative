@@ -3,5 +3,6 @@
 Como rodar:
 
 ```
+cd ToDo
 npm i
 npm run web
