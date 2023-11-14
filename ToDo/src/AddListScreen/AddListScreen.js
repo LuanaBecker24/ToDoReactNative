@@ -22,10 +22,10 @@ const AddListScreen = ({ navigation }) => {
 
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: "#fff8f0" }}>
-            <Text style={{ marginBottom: 15, fontSize: 20 }}>Adicione um item para sua lista:</Text>
+            <Text style={{ marginBottom: 15, fontSize: 20 }}>Adicione uma Lista</Text>
             <TextInput
                 style={{ marginBottom: 10, borderBottomWidth: 1, borderBottomColor: 'gray' }}
-                placeholder="New Item"
+                placeholder="Nova Lista"
                 value={newItem}
                 onChangeText={setNewItem}
             />
