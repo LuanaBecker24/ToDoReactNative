@@ -5,7 +5,7 @@ import metadata from '../storage.metadata.json';
 
 const AddListScreen = ({ navigation }) => {
     const [newItem, setNewItem] = useState("");
-
+    
     const addItemToList = async () => {
         if (newItem.trim() !== "") {
             const savedItemList = await AsyncStorage.getItem(metadata.LIST.TASK);
@@ -13,12 +13,14 @@ const AddListScreen = ({ navigation }) => {
             if (savedItemList) {
                 itemList = JSON.parse(savedItemList);
             }
+
             itemList.push(newItem);
             await AsyncStorage.setItem(metadata.LIST.TASK, JSON.stringify(itemList));
 
             navigation.navigate("HomeScreen");
         }
-    }
+    };
+
 
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: "#fff8f0" }}>
